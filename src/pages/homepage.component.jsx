@@ -6,7 +6,7 @@ function HomePage(props) {
     console.log(props)
     return (
         <div className="homepage">
-            <Directory/>
+            <Directory />
         </div>
     )
 }
