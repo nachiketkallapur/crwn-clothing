@@ -19,4 +19,16 @@
       color: black;
       border: 1px solid black;
     }
+
+    &.google-sign-in{
+      background-color: #4285f4;        //It is Google Blue color
+      color: white;
+
+      &:hover{
+        background-color: #357ae8;      //It is darker shade of google blue color
+        border: none;
+      }
+    }
+    
+    
   }
