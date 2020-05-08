@@ -24,6 +24,7 @@ class SignIn extends Component {
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({ email: '', password: '' });
         } catch (error) {
+            alert(error);
             console.log(error);
         }
 
@@ -59,7 +60,7 @@ class SignIn extends Component {
                         required />
                     <div className="buttons">
                         <CustomButton type="submit" >Sign In</CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
+                        <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
                         {/* <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>  prop without any value has a default value of true */}
                     </div>
 
