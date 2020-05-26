@@ -29,10 +29,10 @@ class SignUp extends React.Component {
         }
 
         try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            console.log(user)
+            const User = await auth.createUserWithEmailAndPassword(email, password);
+            console.log(User);
 
-            await createUserProfileDocument(user, { displayName });
+            await createUserProfileDocument(User.user,  {displayName} );        //{displayName} I didn't understand
 
             this.setState({
                 displayName: '',
