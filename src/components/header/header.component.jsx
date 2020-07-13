@@ -10,46 +10,22 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './headers.styles';
-
-let displayName = '';
-
-export const displaySalutation = () => {
-    auth.onAuthStateChanged(async userAuth => {
-        if (userAuth) {
-            const userRef = await createUserProfileDocument(userAuth);
-
-            userRef.onSnapshot(snapShot => {
-                displayName = snapShot.data().displayName;
-            })
-        }
-    })
-}
-
-const signOut = () => {
-    auth.signOut();
-    displayName = '';
-}
+import { signOutStart } from '../../redux/user/user.actions';
 
 
-function Header({ currentUser,hidden }) {
-    displaySalutation();
-
+function Header({ currentUser,hidden,signOutStart }) {
+    
     return (
         <HeaderContainer>
             <LogoContainer to="/">
                 <Logo className="logo" />
             </LogoContainer>
             <OptionsContainer>
-                <div className="option">
-                    {
-                        displayName ? "Hello! " + displayName : displayName
-                    }
-                </div>
                 <OptionLink to="/shop">SHOP</OptionLink>
                 <OptionLink to="/contact">CONTACT</OptionLink>
                 {
                     currentUser ?
-                        <OptionLink as='div' onClick={() => signOut()}>SIGN OUT</OptionLink>
+                        <OptionLink as='div' onClick={signOutStart}>SIGN OUT</OptionLink>
                         :
                         <OptionLink to='/signin'>SIGN IN</OptionLink>
                 }
@@ -70,4 +46,10 @@ const mapStateToProps = createStructuredSelector({
     hidden: selectCartHidden
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOutStart: () => dispatch(signOutStart())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
