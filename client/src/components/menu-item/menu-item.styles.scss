@@ -8,6 +8,7 @@
     border: 1px solid black;
     margin: 0 7.5px 15px;       //top right bottom left
     overflow: hidden;
+
     &:hover {                   //It is a pseudo class(Read more at "https://css-tricks.com/the-sass-ampersand/")
         cursor: pointer;
     
@@ -33,6 +34,10 @@
 }
 &:last-child{                   //It is equivalent to .menu-item:last-child
     margin-left: 7.5px;
+}
+
+@media screen and (max-width: 800px) {
+    height: 200px;
 }
 
 .background-image{
@@ -66,4 +71,6 @@
             font-size: 16px;
         }
     }
+
+    
 }
